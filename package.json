@@ -1,0 +1,22 @@
+{
+  "name": "staudio-back-end",
+  "version": "1.0.0",
+  "description": "back-end API for AAD",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BKaya44/staudio-back-end.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BKaya44/staudio-back-end/issues"
+  },
+  "homepage": "https://github.com/BKaya44/staudio-back-end#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
