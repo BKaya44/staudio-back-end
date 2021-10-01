@@ -76,7 +76,7 @@ Backend project for AAD
 | name | string |
 | description | string |
 
-| Deal | Type |
+| Deal_product | Type |
 |--|--|
 | id | string |
 | product_id | string |
