@@ -2,6 +2,10 @@ const express = require('express');
 const api = express.Router();
 
 const productRoutes = require("./product");
+const reviewRoutes = require("./review");
+const userRoutes = require("./user");
+const orderRoutes = require("./order");
+const dealRoutes = require("./deal");
 
 /**
  * All api routes
@@ -16,6 +20,29 @@ const productRoutes = require("./product");
     }
 });
 
+/**
+ * All product routes
+ */
 api.use("/product", productRoutes);
+
+/**
+ * All review routes
+ */
+ api.use("/product/review", reviewRoutes);
+
+ /**
+ * All user routes
+ */
+  api.use("/user", userRoutes);
+
+  /**
+ * All order routes
+ */
+ api.use("/order", orderRoutes);
+
+ /**
+ * All deal routes
+ */
+  api.use("/deal", dealRoutes);
 
 module.exports = api
