@@ -55,7 +55,6 @@ var productModel = require('../models/product');
  product.get('/:id', async (req, res) => {
     try {
         const findProduct = await productModel.find({_id: req.params.id});
-        console.log(findProduct);
         if(Object.keys(findProduct).length !== 0){
             res.status(200);
             return res.send(findProduct);

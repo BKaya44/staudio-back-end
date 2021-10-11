@@ -1,8 +1,8 @@
 var mongoose = require('mongoose');
 
 var DealProductSchema = new mongoose.Schema({
-    product_id: String,
-    deal_id: String,
+    product_id: {type: mongoose.Schema.Types.ObjectId, ref: 'Product'},
+    deal_id: {type: mongoose.Schema.Types.ObjectId, ref: 'Deal'},
     price: String,
 });
 
