@@ -1,4 +1,5 @@
 const express = require('express');
+var bcrypt = require('bcrypt');
 const user = express.Router();
 
 var userModel = require('../models/user');
@@ -25,16 +26,16 @@ user.get("/", async (req, res) => {
  * Requires the following params:
  * username: <string>
  * password: <string>
- * passwordConf: <string>
+ * passwordconf: <string>
  * email: <string>
  * location: <string> (not required)
  */
 user.post('/', async (req, res) => {
-    if (!req.body.username || !req.body.password || !req.body.passwordConf || !req.body.email) {
+    if (!req.body.username || !req.body.password || !req.body.passwordconf || !req.body.email) {
         res.status(400);
         return res.send({ error: { "status": 400, "message": "Missing params." } });
     }
-    if (req.body.password !== req.body.passwordConf) {
+    if (req.body.password !== req.body.passwordconf) {
         res.status(400);
         return res.send({ error: { "status": 400, "message": "Password verification is incorrect." } });
     }
@@ -45,6 +46,7 @@ user.post('/', async (req, res) => {
             email: req.body.email
         });
         if (req.body.location) users.location = req.body.location
+        
         await users.save();
         res.status(200);
         return res.send({ "status": "success", "message": "User has been registered." });
@@ -105,21 +107,21 @@ user.delete('/:id', async (req, res) => {
  * Updates user.
  * Requires the following params:
  * userid: <string>
- * password: <string>
- * passwordConf: <string>
- * newPassword: <string>
+ * oldpassword: <string>
+ * oldpasswordconf: <string>
+ * newpassword: <string>
  */
 user.patch("/:id", async (req, res) => {
     try {
         const users = await userModel.findOne({_id: req.params.id});
-        if (req.body.password || req.body.passwordConf || req.body.newPassword) {
-            if (req.body.password !== req.body.passwordConf) {
+        if (req.body.oldpassword || req.body.oldpasswordconf || req.body.newpassword) {
+            if (req.body.oldpassword !== req.body.oldpasswordconf) {
                 res.status(400);
                 return res.send({error: {"status": 400, "message": "Password verification is incorrect."}});
             }
 
-            if (bcrypt.compareSync(req.body.password, users.password)) {
-                users.password = req.body.newPassword;
+            if (bcrypt.compareSync(req.body.oldpassword, users.password)) {
+                users.password = req.body.newpassword;
                 await users.save();
                 res.status(200);
                 return res.send({ "status": 200, "message": "Password has been updated." });
