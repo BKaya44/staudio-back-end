@@ -4,6 +4,8 @@ const deal = express.Router();
 var dealModel = require('../models/deal');
 var dealProductModel = require('../models/deal_product');
 var productModel = require('../models/product');
+const auth = require('../middleware/auth');
+const admin_check = require('../middleware/admin_check');
 
 //Routes for all deal api responses
 //'<domain>/api/deal'
@@ -52,7 +54,7 @@ deal.get("/:id", async (req, res) => {
  * name: <string>
  * description: <string>
  */
- deal.post('/', async (req, res) => {
+ deal.post('/', auth, admin_check, async (req, res) => {
     if (!req.body.name || !req.body.description) {
         res.status(400);
         return res.send({ error: { "status": 400, "message": "Missing params." } });
@@ -77,7 +79,7 @@ deal.get("/:id", async (req, res) => {
  * name: <string>
  * description: <string>
  */
- deal.post('/:id', async (req, res) => {
+ deal.post('/:id', auth, admin_check, async (req, res) => {
     if (!req.body.product_id || !req.body.price) {
         res.status(400);
         return res.send({ error: { "status": 400, "message": "Missing params." } });

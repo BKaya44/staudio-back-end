@@ -3,6 +3,8 @@ const order = express.Router();
 
 var orderModel = require('../models/order');
 var orderItemModel = require('../models/order_item');
+const auth = require('../middleware/auth');
+const admin_check = require('../middleware/admin_check');
 
 //Routes for all order api responses
 //'<domain>/api/order'
@@ -10,7 +12,7 @@ var orderItemModel = require('../models/order_item');
 /**
  * Gets all orders.
  */
- order.get("/", async (req, res) => {
+ order.get("/", auth, admin_check, async (req, res) => {
     try {
         const orders = await orderModel.find();
         res.status(200);
@@ -24,8 +26,12 @@ var orderItemModel = require('../models/order_item');
 /**
  * Gets all orders from specific user.
  */
- order.get("/user/:id", async (req, res) => {
+ order.get("/user/:id", auth, async (req, res) => {
     try {
+        if (req.user_type === "USER" && req.user_id !== req.params.id) {
+            res.status(401);
+            return res.send({ error: { "status": 400, "message": "Unauthorized." } });
+        }
         const findOrder = await orderModel.find({user_id: req.params.id});
         if(Object.keys(findOrder).length !== 0){
             res.status(200);
@@ -43,9 +49,13 @@ var orderItemModel = require('../models/order_item');
 /**
  * Gets specific orders.
  */
- order.get("/:id", async (req, res) => {
+ order.get("/:id", auth, async (req, res) => {
     try {
         const findOrder = await orderModel.findOne({_id: req.params.id});
+        if (req.user_type === "USER" && req.user_id !== findOrder.user_id) {
+            res.status(401);
+            return res.send({ error: { "status": 400, "message": "Unauthorized." } });
+        }
         if(Object.keys(findOrder).length !== 0){
             const findProductOrder = await orderItemModel.find({ order_id: findOrder._id});
             res.status(200);
@@ -65,7 +75,7 @@ var orderItemModel = require('../models/order_item');
  * Accepts the following params:
  * paid_status: <string>
  */
-order.patch('/:id', async (req, res) => {
+order.patch('/:id', auth, admin_check, async (req, res) => {
     try {
         const findOrder = await orderModel.findOne({_id: req.params.id});
         if (!req.body.paid_status) {

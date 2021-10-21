@@ -14,7 +14,18 @@ var UserSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    email: String,
+    type: {
+        type: String,
+        default: 'USER',
+        trim: true,
+        uppercase: true
+    },
+    email: {
+        type: String,
+        unique: true,
+        required: true,
+        trim: true
+    },
     location: String,
 });
 
@@ -30,7 +41,7 @@ var UserSchema = new mongoose.Schema({
             }
             bcrypt.compare(password, user.password, function (err, result) {
                 if (result === true) {
-                    var token = jwt.sign({ id: user._id }, config.SECRET, {
+                    var token = jwt.sign({ id: user._id, type: user.type, name: user.username }, config.SECRET, {
                         expiresIn: config.SESSION_LENGTH
                     });
                     return callback(null, token);

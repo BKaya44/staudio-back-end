@@ -3,6 +3,8 @@ var bcrypt = require('bcrypt');
 const user = express.Router();
 
 var userModel = require('../models/user');
+const auth = require('../middleware/auth');
+const admin_check = require('../middleware/admin_check');
 
 //Routes for all user api responses
 //'<domain>/api/user'
@@ -10,7 +12,7 @@ var userModel = require('../models/user');
 /**
  * Gets all users.
  */
-user.get("/", async (req, res) => {
+user.get("/", auth, admin_check, async (req, res) => {
     try {
         const users = await userModel.find();
         res.status(200);
@@ -85,7 +87,7 @@ user.post('/authorize', async (req, res) => {
  * userid: <string>
  * password: <string>
  */
-user.delete('/:id', async (req, res) => {
+user.delete('/:id', auth, admin_check, async (req, res) => {
     try {
         const users = await userModel.findOne({_id: req.params.id});
         var password = req.body.password;
@@ -106,13 +108,16 @@ user.delete('/:id', async (req, res) => {
 /**
  * Updates user.
  * Requires the following params:
- * userid: <string>
  * oldpassword: <string>
  * oldpasswordconf: <string>
  * newpassword: <string>
  */
-user.patch("/:id", async (req, res) => {
+user.patch("/:id", auth, async (req, res) => {
     try {
+        if (req.user_type === "USER" && req.user_id !== req.params.id) {
+            res.status(401);
+            return res.send({ error: { "status": 400, "message": "Unauthorized." } });
+        }
         const users = await userModel.findOne({_id: req.params.id});
         if (req.body.oldpassword || req.body.oldpasswordconf || req.body.newpassword) {
             if (req.body.oldpassword !== req.body.oldpasswordconf) {

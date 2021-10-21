@@ -2,6 +2,8 @@ const express = require('express');
 const product = express.Router();
 
 var productModel = require('../models/product');
+const auth = require('../middleware/auth');
+const admin_check = require('../middleware/admin_check');
 
 //Routes for all product api responses
 //'<domain>/api/product'
@@ -28,7 +30,7 @@ var productModel = require('../models/product');
  * type: <string> 
  * price: <string> 
  */
- product.post('/', async (req, res) => {
+ product.post('/', auth, admin_check, async (req, res) => {
     if (!req.body.title || !req.body.description || !req.body.type || !req.body.price) {
         res.status(400);
         return res.send({ error: { "status": 400, "message": "Missing params." } });
@@ -76,7 +78,7 @@ var productModel = require('../models/product');
  * type: <string> 
  * price: <string> 
  */
- product.patch('/:id', async (req, res) => {
+ product.patch('/:id', auth, admin_check, async (req, res) => {
     try {
         const findProduct = await productModel.findOne({_id: req.params.id});
         if (!req.body.title && !req.body.description && !req.body.type && !req.body.price) {

@@ -2,6 +2,7 @@ const express = require('express');
 const review = express.Router();
 
 var reviewModel = require('../models/review');
+const auth = require('../middleware/auth');
 
 //Routes for all review api responses
 //'<domain>/api/product/review'
@@ -32,10 +33,14 @@ var reviewModel = require('../models/review');
  * description: <string> 
  * star: <number> 
  */
- review.post('/:id', async (req, res) => {
+ review.post('/:id', auth, async (req, res) => {
     if (!req.body.user_id || !req.body.description || !req.body.star) {
         res.status(400);
         return res.send({ error: { "status": 400, "message": "Missing params." } });
+    }
+    if (req.user_type === "USER" && req.user_id !== req.body.user_id) {
+        res.status(401);
+        return res.send({ error: { "status": 400, "message": "Unauthorized." } });
     }
     try {
         const newProductReview = new reviewModel({
