@@ -93,4 +93,53 @@ order.patch('/:id', auth, admin_check, async (req, res) => {
     }
 });
 
+/**
+ * Adds new order
+ * Returns new order id
+ */
+ order.post('/', auth, async (req, res) => {
+    try {
+        let qrcode = (Math.random() + 1).toString(36).substring(2);
+        const newOrder = new orderModel({
+            user_id: req.user_id,
+            qr_code: qrcode,
+            reserved_date: Date.now(),
+        });
+        await newOrder.save();
+        res.status(200);
+        return res.send({ "status": "success", "order_id": newOrder._id });
+    } catch {
+        res.status(400);
+        return res.send({ error: { "status": 400, "message": "Order could not be created." } });
+    }
+});
+
+/**
+ * Adds item to order
+ * Requires the following params:
+ * item_id: <string>
+ * amount: <string>
+ * price: <string>
+ */
+ order.post('/item/:id', auth, async (req, res) => {
+    if (!req.body.item_id || !req.body.amount || !req.body.price) {
+        res.status(400);
+        return res.send({ error: { "status": 400, "message": "Missing params." } });
+    }
+    try {
+        const newOrderItem = new dealProductModel({
+            order_id: req.params.id,
+            item_id: req.body.item_id,
+            amount: req.body.amount,
+            price: req.body.price,
+        });
+        await newOrderItem.save();
+        res.status(200);
+        return res.send({ "status": "success", "message": "Item has been added to the order." });
+    } catch {
+        res.status(400);
+        return res.send({ error: { "status": 400, "message": "Item could not be added to order." } });
+    }
+});
+
 module.exports = order
