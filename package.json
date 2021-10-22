@@ -6,7 +6,8 @@
   "scripts": {
     "prod": "node server.js",
     "dev": "npx nodemon server.js",
-    "cy:run": "npx cypress run"
+    "cy:run": "npx cypress run",
+    "cy:open": "npx cypress open"
   },
   "repository": {
     "type": "git",
@@ -23,7 +24,9 @@
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.0.8"
+    "mongoose": "^6.0.8",
+    "swagger-jsdoc": "^6.1.0",
+    "swagger-ui-express": "^4.1.6"
   },
   "devDependencies": {
     "cypress": "^8.5.0",

@@ -3,6 +3,7 @@ const order = express.Router();
 
 var orderModel = require('../models/order');
 var orderItemModel = require('../models/order_item');
+var productModel = require('../models/product');
 const auth = require('../middleware/auth');
 const admin_check = require('../middleware/admin_check');
 
@@ -59,7 +60,7 @@ const admin_check = require('../middleware/admin_check');
         if(Object.keys(findOrder).length !== 0){
             const findProductOrder = await orderItemModel.find({ order_id: findOrder._id});
             res.status(200);
-            return res.json({order: findOrder, items: findProductOrder});
+            return res.json({order: findOrder, products: findProductOrder});
         } else {
             res.status(400);
             return res.send({ error: { "status": 400, "message": "Order does not exist." } });
@@ -117,22 +118,25 @@ order.patch('/:id', auth, admin_check, async (req, res) => {
 /**
  * Adds item to order
  * Requires the following params:
- * item_id: <string>
+ * product_id: <string>
  * amount: <string>
  * price: <string>
  */
  order.post('/item/:id', auth, async (req, res) => {
-    if (!req.body.item_id || !req.body.amount || !req.body.price) {
+    if (!req.body.product_id || !req.body.amount || !req.body.price) {
         res.status(400);
         return res.send({ error: { "status": 400, "message": "Missing params." } });
     }
     try {
-        const newOrderItem = new dealProductModel({
-            order_id: req.params.id,
-            item_id: req.body.item_id,
+        const findOrder = await orderModel.findOne({_id: req.params.id});
+        const findProduct = await productModel.findOne({_id: req.body.product_id});
+        const newOrderItem = new orderItemModel({
+            order_id: findOrder._id,
+            product_id: findProduct._id,
             amount: req.body.amount,
             price: req.body.price,
         });
+        console.log(newOrderItem)
         await newOrderItem.save();
         res.status(200);
         return res.send({ "status": "success", "message": "Item has been added to the order." });

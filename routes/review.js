@@ -12,7 +12,7 @@ const auth = require('../middleware/auth');
  */
  review.get('/:id', async (req, res) => {
     try {
-        const findProductReview = await reviewModel.find({_id: req.params.id});
+        const findProductReview = await reviewModel.find({product_id: req.params.id});
         if(Object.keys(findProductReview).length !== 0){
             res.status(200);
             return res.send(findProductReview);

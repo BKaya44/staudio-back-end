@@ -1,6 +1,8 @@
 const express = require('express')
 const session = require('express-session')
 const mongoose = require('mongoose');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./documentation/swagger.json');
 
 const apiRoutes = require("./routes/api");
 const config = require('./config');
@@ -32,6 +34,8 @@ const config = require('./config');
      
      //Creates routes for api.
      app.use("/api", apiRoutes);
+     app.use('/api-docs', swaggerUi.serve);
+     app.get('/api-docs', swaggerUi.setup(swaggerDocument));
 
      /**
      * Throws a 404 page when page doesn't exists.

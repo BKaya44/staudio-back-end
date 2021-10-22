@@ -48,7 +48,6 @@ user.post('/', async (req, res) => {
             email: req.body.email
         });
         if (req.body.location) users.location = req.body.location
-        
         await users.save();
         res.status(200);
         return res.send({ "status": "success", "message": "User has been registered." });
@@ -84,7 +83,6 @@ user.post('/authorize', async (req, res) => {
 /**
  * removes existing user.
  * Requires the following params:
- * userid: <string>
  * password: <string>
  */
 user.delete('/:id', auth, admin_check, async (req, res) => {
