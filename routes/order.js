@@ -35,9 +35,8 @@ const admin_check = require('../middleware/admin_check');
         }
         const findOrder = await orderModel.find({user_id: req.params.id});
         if(Object.keys(findOrder).length !== 0){
-            const findProductOrder = await orderItemModel.find({ order_id: findOrder._id});
             res.status(200);
-            return res.json({order: findOrder, products: findProductOrder});
+            return res.send(findOrder);
         } else {
             res.status(400);
             return res.send({ error: { "status": 400, "message": "User has no orders or user does not exist." } });
