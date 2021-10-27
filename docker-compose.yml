@@ -1,0 +1,17 @@
+version: "1"
+services:
+  staudio-app:
+      container_name: staudio-app
+      restart: always
+      build: .
+      ports:
+        - "8000:8000"
+      links:
+        - mongo
+  mongo:
+        container_name: mongo
+        image: mongo
+        volumes:
+          - ./data:/data/db
+        ports:
+          - '27018:27017'

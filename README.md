@@ -1,6 +1,48 @@
 # staudio-backend
 Backend project for AAD
 
+# Installing
+Before starting you must have Node and mongodb installed
+
+For windows download links
+- [NodeJS](https://nodejs.org/en/)
+- [MongoDB](https://www.mongodb.com/products/compass)
+
+Other OS search online for installation guide on Node and MongoDB.
+
+Install all packages using the following command:
+
+`npm i`
+
+If there are no errors you are ready to use this software.
+
+# Docker install
+Before installing with docker you must have docker installed on your OS.
+
+When docker is installed you can use the following command to install all dependencies for this project
+
+`docker-compose up`
+
+# How to use it
+To start the server you can either run it in development mode or just run the server.
+
+To run it on development you must have nodemon installed.
+` npm install -g nodemon`
+
+If nodemon is installed and you want to run in on development mode you can run the following command:
+`npm run dev`
+
+If you just want to start the server in production mode you can run the following command without nodemon installed:
+`npm run prod`
+
+You can navigate to `localhost:8000/api-doc` to find out what API calls are available.
+
+# How to run tests
+To run tests cypress must be installed.
+
+After cypress is installed you can use the following command to run all tests 
+`npm run cy:run`
+
 # API calls
 
 | API-Call           | Params                                        | API-Type | Description                       | Authentication                     | Error-handling                                                                 |
