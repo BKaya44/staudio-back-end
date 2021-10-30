@@ -37,6 +37,11 @@ If you just want to start the server in production mode you can run the followin
 
 You can navigate to `localhost:8000/api-doc` to find out what API calls are available.
 
+## Add existing test data
+To add existing test data which is included in the `test_data` folder, you must open MongoDB or any client that allows to add/edit mongo databases. 
+
+navigate to the `staudio` database and import all files in the `test_data` folder as a collection.
+
 # How to run tests
 To run tests cypress must be installed and the server must be running.
 

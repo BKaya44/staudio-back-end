@@ -1,0 +1,19 @@
+[{
+  "_id": {
+    "$oid": "6172ac7d3dda9852af468e97"
+  },
+  "user_id": "617142e069b79b137d2ccf33",
+  "product_id": "6156ed92d170e00abff3dd98",
+  "description": "Very nice!",
+  "star": 5,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6172ac823dda9852af468e99"
+  },
+  "user_id": "617142e069b79b137d2ccf33",
+  "product_id": "6156ed92d170e00abff3dd98",
+  "description": "Very nice!",
+  "star": 5,
+  "__v": 0
+}]

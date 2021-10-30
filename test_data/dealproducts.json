@@ -1,0 +1,37 @@
+[{
+  "_id": {
+    "$oid": "61643afdae0696b0a63a3e75"
+  },
+  "product_id": {
+    "$oid": "6156ed92d170e00abff3dd98"
+  },
+  "deal_id": {
+    "$oid": "61641fd791f1be141f3dfd62"
+  },
+  "price": "150",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6172ab793dda9852af468e8e"
+  },
+  "product_id": {
+    "$oid": "6156ed92d170e00abff3dd98"
+  },
+  "deal_id": {
+    "$oid": "61641fd791f1be141f3dfd62"
+  },
+  "price": "150",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6172b464f91b13a386f9fd73"
+  },
+  "product_id": {
+    "$oid": "6156ed92d170e00abff3dd98"
+  },
+  "deal_id": {
+    "$oid": "61641fd791f1be141f3dfd62"
+  },
+  "price": "150",
+  "__v": 0
+}]

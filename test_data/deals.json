@@ -1,0 +1,25 @@
+[{
+  "_id": {
+    "$oid": "61641fd791f1be141f3dfd62"
+  },
+  "name": "Great bundle",
+  "description": "Best bundle ever made.",
+  "products": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61643a3233c25a2284a2e019"
+  },
+  "name": "Okay bundle",
+  "description": "Second best bundle ever made.",
+  "products": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6172ab7e3dda9852af468e90"
+  },
+  "name": "Okay bundle",
+  "description": "Second best bundle ever made.",
+  "products": [],
+  "__v": 0
+}]

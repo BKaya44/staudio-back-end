@@ -1,0 +1,55 @@
+[{
+  "_id": {
+    "$oid": "6156ed92d170e00abff3dd98"
+  },
+  "title": "Kurt Cobain's Fender Jag-Dang",
+  "description": "The Fender Jag-Stang is an electric guitar produced by Fender and designed by Nirvana guitarist/vocalist Kurt Cobain. It was intended as a hybrid of two Fender electric guitars models: the Jaguar and the Mustang.",
+  "type": "INSTRUMENT",
+  "price": "1500",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61601931aa6c0b64786f7556"
+  },
+  "title": "Kurt Cobain's Fender Jag-Stang",
+  "description": "The Fender Jag-Stang is an electric guitar produced by Fender and designed by Nirvana guitarist/vocalist Kurt Cobain. It was intended as a hybrid of two Fender electric guitars models: the Jaguar and the Mustang.",
+  "type": "INSTRUMENT",
+  "price": "1500",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6171ac29d4ffac8a3070b2ae"
+  },
+  "title": "Kurt Cobain's Fender Jag-Stang",
+  "description": "The Fender Jag-Stang is an electric guitar produced by Fender and designed by Nirvana guitarist/vocalist Kurt Cobain. It was intended as a hybrid of two Fender electric guitars models: the Jaguar and the Mustang.",
+  "type": "INSTRUMENT",
+  "price": "1500",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6171ad4c1daa7cad5966e199"
+  },
+  "title": "Kurt Cobain's Fender Jag-Stang",
+  "description": "The Fender Jag-Stang is an electric guitar produced by Fender and designed by Nirvana guitarist/vocalist Kurt Cobain. It was intended as a hybrid of two Fender electric guitars models: the Jaguar and the Mustang.",
+  "type": "INSTRUMENT",
+  "price": "1500",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6171af8d44ab9153e3eeb336"
+  },
+  "title": "Kurt Cobain's Fender Jag-Stang",
+  "description": "The Fender Jag-Stang is an electric guitar produced by Fender and designed by Nirvana guitarist/vocalist Kurt Cobain. It was intended as a hybrid of two Fender electric guitars models: the Jaguar and the Mustang.",
+  "type": "INSTRUMENT",
+  "price": "1500",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6172ab863dda9852af468e92"
+  },
+  "title": "Super guitar",
+  "description": "The Fender Jag-Stang is an electric guitar produced by Fender and designed by Nirvana guitarist/vocalist Kurt Cobain. It was intended as a hybrid of two Fender electric guitars models: the Jaguar and the Mustang.",
+  "type": "INSTRUMENT",
+  "price": "1500",
+  "__v": 0
+}]
