@@ -13,8 +13,8 @@ module.exports = (req, res, next) => {
         req.user_name = decoded.name;
         next();
     } catch {
-        res.status(500);
-        res.send({ error: { "status": 500, "message": "Failed to authenticate token." } });
+        res.status(400);
+        res.send({"status": 400, "message": "Failed to authenticate token." });
         return;
     }
 };
