@@ -12,3 +12,21 @@
 // You can read more here:
 // https://on.cypress.io/configuration
 // ***********************************************************
+Cypress.Commands.add('login', () => {
+    cy.request({
+        method:'POST', 
+        url:'http://127.0.0.1:8000/api/user/authorize',
+        body: {
+            username: Cypress.env('api_username'),
+            password: Cypress.env('api_password')
+        },
+      })
+      .as('loginResponse')
+      .then((response) => {
+        Cypress.env('token', response.body.token); 
+        return response;
+      })
+      .its('status')
+      .should('eq', 200);
+  })
+  

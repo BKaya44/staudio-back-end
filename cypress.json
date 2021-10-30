@@ -1,1 +1,6 @@
-{}
+{
+    "env": {
+      "api_username": "admin",
+      "api_password": "test"
+    }
+  }

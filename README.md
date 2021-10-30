@@ -38,7 +38,7 @@ If you just want to start the server in production mode you can run the followin
 You can navigate to `localhost:8000/api-doc` to find out what API calls are available.
 
 # How to run tests
-To run tests cypress must be installed.
+To run tests cypress must be installed and the server must be running.
 
 After cypress is installed you can use the following command to run all tests 
 `npm run cy:run`
