@@ -94,10 +94,10 @@ deal.get("/:id", async (req, res) => {
         });
         await newDealProduct.save();
         res.status(200);
-        return res.send({ "status": "success", "message": "Deal has been added." });
+        return res.send({ "status": "success", "message": "Product has been added to deal." });
     } catch {
         res.status(400);
-        return res.send({ error: { "status": 400, "message": "Deal could not be added." } });
+        return res.send({ error: { "status": 400, "message": "Product could not be added." } });
     }
 });
 
